@@ -56,7 +56,7 @@ app.post('/emailapi', (req,res) =>{
                     to: text.email, // list of receivers
                     subject: "Student Alert", // Subject line
                     text: "This is the eamil from safetoschools", // plain text body
-                    html: `<b>This is inform you that ${text.name} will late today </b>` // html body
+                    html: `<b>This is inform you that ${text.firstname +" " +text.lastname} will late today </b>` // html body
                 }
                 let info = transporter.sendMail(mailOptions).then( (err, res) => {
                     console.log(res, "iuoeiwruoiw");

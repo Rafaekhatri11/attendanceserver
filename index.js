@@ -4,7 +4,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 var nodemailer = require('nodemailer')
-
+const ejs = require("ejs");
 
 
 app.use(bodyParser.urlencoded({extended:true}))
@@ -15,6 +15,23 @@ app.get('/', (req,res)=>{
     res.send("Hello World");
 })
 
+
+app.get('/exportTabel', (req,res ) => {
+    console.log(req.body);
+    // var transporter = nodemailer.createTransport({
+    //     service: "gmail",
+    //     host: "smtp.gmail.com",
+    //     port: 587,
+    //     secure: false,
+    //     auth:{
+    //         user: "safetoschoolsfb@gmail.com",
+    //         pass : "Sts$2020"
+    //     }
+    // });
+    let people = ['geddy', 'neil', 'alex'],
+    html = ejs.render('<%= people.join(", "); %>', {people: people});
+    res.send(html)
+});
 
 app.post('/emailapi', (req,res) =>{
     console.log(req.body)
@@ -27,6 +44,7 @@ app.post('/emailapi', (req,res) =>{
             user: "safetoschoolsfb@gmail.com",
             pass : "Sts$2020"
         }
+
     });
    
     

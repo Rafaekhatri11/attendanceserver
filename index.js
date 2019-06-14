@@ -15,9 +15,14 @@ app.get('/', (req,res)=>{
     res.send("Hello World");
 })
 
+app.set('view engine', 'ejs')
 
+
+var student = {
+    name: 'Marks'
+}
 app.get('/exportTabel', (req,res ) => {
-    console.log(req.body);
+   
     // var transporter = nodemailer.createTransport({
     //     service: "gmail",
     //     host: "smtp.gmail.com",
@@ -28,9 +33,9 @@ app.get('/exportTabel', (req,res ) => {
     //         pass : "Sts$2020"
     //     }
     // });
-    let people = ['geddy', 'neil', 'alex'],
-    html = ejs.render('<%= people.join(", "); %>', {people: people});
-    res.send(html)
+    // let people = ['geddy', 'neil', 'alex'],
+    // html = res.render('<%= people.join(", "); %>', {people: people});
+    res.render("table", {name: student})
 });
 
 app.post('/emailapi', (req,res) =>{

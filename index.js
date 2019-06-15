@@ -18,24 +18,51 @@ app.get('/', (req,res)=>{
 app.set('view engine', 'ejs')
 
 
-var student = {
-    name: 'Marks'
-}
+var student = [
+   {
+        date : "dfsd",
+        present: true,
+        absent: false ,
+        late: false
+   }
+]
 app.get('/exportTabel', (req,res ) => {
    
-    // var transporter = nodemailer.createTransport({
-    //     service: "gmail",
-    //     host: "smtp.gmail.com",
-    //     port: 587,
-    //     secure: false,
-    //     auth:{
-    //         user: "safetoschoolsfb@gmail.com",
-    //         pass : "Sts$2020"
-    //     }
-    // });
+    var transporter = nodemailer.createTransport({
+        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        auth:{
+            user: "safetoschoolsfb@gmail.com",
+            pass : "Sts$202020"
+        }
+    });
+    res.render("table", {student}, (err, data) => {
+        if(err){
+            console.log(err)
+        }
+         res.send(data)
+       
+            // let mailOptions = {
+            //     from: 'safetoschoolsfb@gmail.com', // sender address
+            //     to: 'owaiskhan148@gmail.com', // list of receivers
+            //     subject: "Student Alert", // Subject line
+            //     text: "This is the eamil from safetoschools", // plain text body
+            //     html: data // html body
+            // }
+            // let info = transporter.sendMail(mailOptions).then( (err, res) => {
+            //     console.log(res, "iuoeiwruoiw");
+            // }).catch((errr) => {
+            //     console.log(errr);
+            // })
+        
+        
+    })
+   
     // let people = ['geddy', 'neil', 'alex'],
     // html = res.render('<%= people.join(", "); %>', {people: people});
-    res.render("table", {name: student})
+    // res.render("table", {name: student})
 });
 
 app.post('/emailapi', (req,res) =>{
@@ -50,6 +77,7 @@ app.post('/emailapi', (req,res) =>{
             pass : "Sts$2020"
         }
 
+        
     });
    
     

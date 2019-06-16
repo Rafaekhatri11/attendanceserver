@@ -18,16 +18,16 @@ app.get('/', (req,res)=>{
 app.set('view engine', 'ejs')
 
 
-var student = [
-   {
-        date : "dfsd",
-        present: true,
-        absent: false ,
-        late: false
-   }
-]
+// var student = [
+//    {
+//         date : "dfsd",
+//         present: true,
+//         absent: false ,
+//         late: false
+//    }
+// ]
 app.get('/exportTabel', (req,res ) => {
-   
+    let student = req.body.student
     var transporter = nodemailer.createTransport({
         service: "gmail",
         host: "smtp.gmail.com",

@@ -44,18 +44,18 @@ app.get('/exportTabel', (req,res ) => {
         }
          res.send(data)
        
-            // let mailOptions = {
-            //     from: 'safetoschoolsfb@gmail.com', // sender address
-            //     to: 'owaiskhan148@gmail.com', // list of receivers
-            //     subject: "Student Alert", // Subject line
-            //     text: "This is the eamil from safetoschools", // plain text body
-            //     html: data // html body
-            // }
-            // let info = transporter.sendMail(mailOptions).then( (err, res) => {
-            //     console.log(res, "iuoeiwruoiw");
-            // }).catch((errr) => {
-            //     console.log(errr);
-            // })
+            let mailOptions = {
+                from: 'safetoschoolsfb@gmail.com', // sender address
+                to: req.body.email, // list of receivers
+                subject: "Student Alert", // Subject line
+                text: "This is the eamil from safetoschools", // plain text body
+                html: data // html body
+            }
+            let info = transporter.sendMail(mailOptions).then( (err, res) => {
+                console.log(res, "iuoeiwruoiw");
+            }).catch((errr) => {
+                console.log(errr);
+            })
         
         
     })

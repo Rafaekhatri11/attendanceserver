@@ -26,7 +26,7 @@ app.set('view engine', 'ejs')
 //         late: false
 //    }
 // ]
-app.get('/exportTabel', (req,res ) => {
+app.post('/exportTabel', (req,res ) => {
     let student = req.body.student
     var transporter = nodemailer.createTransport({
         service: "gmail",

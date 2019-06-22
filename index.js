@@ -27,9 +27,10 @@ app.set('view engine', 'ejs')
 //    }
 // ]
 app.post('/exportTabel', (req,res ) => {
+    // console.log(req.body);
     // console.log(req.body)
-     let body = JSON.parse(req.body);
-    let student = body.student;
+     
+    const student = req.body.student;
     var transporter = nodemailer.createTransport({
         service: "gmail",
         host: "smtp.gmail.com",
@@ -48,7 +49,7 @@ app.post('/exportTabel', (req,res ) => {
        
             let mailOptions = {
                 from: 'safetoschoolsfb@gmail.com', // sender address
-                to: body.email, // list of receivers
+                to: req.body.email, // list of receivers
                 subject: "Student Alert", // Subject line
                 text: "This is the eamil from safetoschools", // plain text body
                 html: data // html body

@@ -38,7 +38,7 @@ app.post('/exportTabel', (req,res ) => {
         secure: false,
         auth:{
             user: "safetoschoolsfb@gmail.com",
-            pass : "Sts$202020"
+            pass : "Sts#2020"
         }
     });
     res.render("table", {student}, (err, data) => {

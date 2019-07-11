@@ -77,7 +77,7 @@ app.post('/emailapi', (req,res) =>{
         secure: false,
         auth:{
             user: "safetoschoolsfb@gmail.com",
-            pass : "Sts$2020"
+            pass : "Sts#2020"
         }
 
         

@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const router = express.Router();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 var nodemailer = require('nodemailer')
@@ -18,19 +17,8 @@ app.get('/', (req,res)=>{
 app.set('view engine', 'ejs')
 
 
-// var student = [
-//    {
-//         date : "dfsd",
-//         present: true,
-//         absent: false ,
-//         late: false
-//    }
-// ]
 app.post('/exportTabel', (req,res ) => {
-    // console.log(req.body);
-    // console.log(req.body)
-     
-    const student = req.body.student;
+    let student = req.body.student
     var transporter = nodemailer.createTransport({
         service: "gmail",
         host: "smtp.gmail.com",
@@ -39,14 +27,16 @@ app.post('/exportTabel', (req,res ) => {
         auth:{
             user: "safetoschoolsfb@gmail.com",
             pass : "Sts#2020"
+        },
+        tls:{
+            rejectUnauthorized: false
         }
     });
     res.render("table", {student}, (err, data) => {
         if(err){
-            console.log(err)
+            console.log("00001",err)
         }
-         res.send(data)
-       
+        //  res.send(data)
             let mailOptions = {
                 from: 'safetoschoolsfb@gmail.com', // sender address
                 to: req.body.email, // list of receivers
@@ -55,17 +45,14 @@ app.post('/exportTabel', (req,res ) => {
                 html: data // html body
             }
             let info = transporter.sendMail(mailOptions).then( (err, res) => {
-                console.log(res, "iuoeiwruoiw");
+                console.log(res, err, "iuoeiwruoiw");
             }).catch((errr) => {
-                console.log(errr);
+                console.log(err);
             })
         
         
     })
    
-    // let people = ['geddy', 'neil', 'alex'],
-    // html = res.render('<%= people.join(", "); %>', {people: people});
-    // res.render("table", {name: student})
 });
 
 app.post('/emailapi', (req,res) =>{
